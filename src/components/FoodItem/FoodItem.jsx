@@ -1,19 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState ,useContext } from 'react'
 import "./FoodItem.css"
 import { assets } from '../../assets/assets'
+import { StoreContext } from '../../content/StoreContext';
 
 const FoodItem = ({id,name,price,description,image}) => {
-    const [itemCont,setItemCount] = useState(0);
+
+    const {cardItem,setCardItem,addTocard,removeFromCard} = useContext(StoreContext);
   return (
     <div className='food-item'>
         <div className="food-item-img-container">
             <img src={image} alt="" className='food-itme-image'/>
-            {!itemCont
-                ?<img className='add' onClick={()=>setItemCount(prev=>prev+1)} src={assets.add_icon_white} alt=''/> : 
+            {!cardItem[id]
+                ?<img className='add' onClick={()=>addTocard(id)} src={assets.add_icon_white} alt=''/> : 
                 <div className='food-item-counter'>
-                    <img onClick={()=>setItemCount(prev=>prev-1)} src={assets.remove_icon_red} alt="" />
-                    <p>{itemCont}</p>
-                    <img onClick={()=>setItemCount(prev=>prev+1)} src={assets.add_icon_green} alt="" />
+                    <img onClick={()=>removeFromCard(id)} src={assets.remove_icon_red} alt="" />
+                    <p>{cardItem[id]}</p>
+                    <img onClick={()=>addTocard(id)} src={assets.add_icon_green} alt="" />
                 </div>
             }
         </div>
