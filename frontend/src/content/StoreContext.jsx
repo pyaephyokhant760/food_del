@@ -5,7 +5,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
     const [cardItem,setCardItem] = useState({});
-    const addTocard = (itemId) => {
+    const addToCart = (itemId) => {
         if(!cardItem[itemId]) {
             setCardItem((prev) => ({...prev,[itemId]:1}))
         }else{
@@ -13,7 +13,7 @@ const StoreContextProvider = (props) => {
         }
     }
 
-    const removeFromCard = (itemId) => {
+    const removeFromCart = (itemId) => {
         setCardItem((prev) => ({...prev,[itemId]: prev[itemId] - 1}))
     }
 
@@ -21,8 +21,10 @@ const StoreContextProvider = (props) => {
         let totalAmount = 0;
         for(const item in cardItem) {
             if(cardItem[item] > 0) {
-                let itemInfo = food_list.find((product) => product.id === item);
-                totalAmount += itemInfo.price*cardItem[item];
+                let itemInfo = food_list.find((product) => product._id === item);
+                if (itemInfo) {
+                    totalAmount += itemInfo.price * cardItem[item];
+                }
             }
         }    
         return totalAmount;
@@ -36,8 +38,8 @@ const StoreContextProvider = (props) => {
         food_list,
         cardItem,
         setCardItem,
-        addTocard,
-        removeFromCard,
+        addToCart,
+        removeFromCart,
         getTotalCartAmount
     }
     return (

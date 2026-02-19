@@ -5,17 +5,17 @@ import { StoreContext } from '../../content/StoreContext';
 
 const FoodItem = ({id,name,price,description,image}) => {
 
-    const {cardItem,setCardItem,addTocard,removeFromCard} = useContext(StoreContext);
+    const {cardItem,setCardItem,addToCart,removeFromCart} = useContext(StoreContext);
   return (
     <div className='food-item'>
         <div className="food-item-img-container">
             <img src={image} alt="" className='food-itme-image'/>
             {!cardItem[id]
-                ?<img className='add' onClick={()=>addTocard(id)} src={assets.add_icon_white} alt=''/> : 
+                ?<img className='add' onClick={()=>addToCart(id)} src={assets.add_icon_white} alt=''/> : 
                 <div className='food-item-counter'>
-                    <img onClick={()=>removeFromCard(id)} src={assets.remove_icon_red} alt="" />
+                    <img onClick={()=>removeFromCart(id)} src={assets.remove_icon_red} alt="" />
                     <p>{cardItem[id]}</p>
-                    <img onClick={()=>addTocard(id)} src={assets.add_icon_green} alt="" />
+                    <img onClick={()=>addToCart(id)} src={assets.add_icon_green} alt="" />
                 </div>
             }
         </div>
