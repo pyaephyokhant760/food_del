@@ -16,8 +16,16 @@
     gap: 10px;
 }
 
-.add-img-upload{
-   width: 20px;
+.add-img-upload img {
+    width: 120px; /* ပုံကို မြင်သာတဲ့ size တစ်ခု ပေးပါ */
+    cursor: pointer;
+    border-radius: 4px;
+    object-fit: contain;
+}
+
+/* Container ကို image နဲ့ လိုက်ဖက်အောင် ထားပါ */
+.add-img-upload {
+    width: fit-content;
 }
 .add-product-name, .add-product-description{
     width: max(40% , 280px);
